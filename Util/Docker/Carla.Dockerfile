@@ -1,6 +1,6 @@
 FROM carla-prerequisites:latest
 
-ARG GIT_BRANCH
+ARG GIT_BRANCH=zcai/gbuffer
 
 ENV HTTP_PROXY="http://proxy-us.intel.com:911"
 ENV HTTPS_PROXY="http://proxy-us.intel.com:911"
@@ -27,7 +27,7 @@ RUN echo $GIT_BRANCH
 
 #RUN if [ -z ${GIT_BRANCH+x} ]; then git clone --depth 1 https://github.com/carla-simulator/carla.git; \
 
-RUN git clone --depth 1 --branch $GIT_BRANCH https://github.com/carla-simulator/carla.git
+RUN git clone --depth 1 --branch $GIT_BRANCH https://github.com/ZhipengCai/carla.git
 
 RUN cd /home/carla/carla \
 && echo pwd \
