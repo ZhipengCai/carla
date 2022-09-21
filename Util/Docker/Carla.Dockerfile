@@ -9,6 +9,8 @@ ENV http_proxy=$HTTP_PROXY
 ENV https_proxy=$HTTPS_PROXY
 ENV no_proxy=$NO_PROXY
 
+run CXXFLAGS+=-w
+
 # apt-get proxy
 #ENV APT_PROXY_PATH="/etc/apt/apt.conf.d/proxy.conf"
 #RUN rm -rf "${APT_PROXY_PATH}"
@@ -38,10 +40,20 @@ WORKDIR /home/carla/carla
 RUN pwd
 RUN ls -alh
 
-RUN make CarlaUE4Editor
+#RUN make CarlaUE4Editor
+
+RUN echo "building PythonAPI"
 RUN make PythonAPI
+
+RUN echo "building utils"
+
 RUN make build.utils
+
+RUN echo "building packege"
 RUN make package
+
+RUN echo "package build successful"
+
 RUN rm -r /home/carla/carla/Dist
 
 WORKDIR /home/carla/carla
