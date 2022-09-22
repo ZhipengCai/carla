@@ -30,17 +30,13 @@ RUN echo $GIT_BRANCH
 #ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 #RUN git clone --depth 1 --branch $GIT_BRANCH https://github.com/ZhipengCai/carla.git
 RUN mkdir /home/carla/carla
-RUN ls -alh /home/carla 
-COPY . /home/carla/carla
 RUN ls -alh /home/carla
-RUN ls -alh /home/carla/carla
+COPY --chown=carla:carla . /home/carla/carla
 
 # RUN false
 
 RUN cd /home/carla/carla \
-&& echo pwd \
-&& ./Update.sh 
-
+&& ./Update.sh
 WORKDIR /home/carla/carla
 
 RUN pwd
