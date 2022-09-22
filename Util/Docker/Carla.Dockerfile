@@ -9,8 +9,6 @@ ENV http_proxy=$HTTP_PROXY
 ENV https_proxy=$HTTPS_PROXY
 ENV no_proxy=$NO_PROXY
 
-run CXXFLAGS+=-w
-
 # apt-get proxy
 #ENV APT_PROXY_PATH="/etc/apt/apt.conf.d/proxy.conf"
 #RUN rm -rf "${APT_PROXY_PATH}"
@@ -29,7 +27,15 @@ RUN echo $GIT_BRANCH
 
 #RUN if [ -z ${GIT_BRANCH+x} ]; then git clone --depth 1 https://github.com/carla-simulator/carla.git; \
 
-RUN git clone --depth 1 --branch $GIT_BRANCH https://github.com/ZhipengCai/carla.git
+#ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+#RUN git clone --depth 1 --branch $GIT_BRANCH https://github.com/ZhipengCai/carla.git
+RUN mkdir /home/carla/carla
+RUN ls -alh /home/carla 
+COPY . /home/carla/carla
+RUN ls -alh /home/carla
+RUN ls -alh /home/carla/carla
+
+# RUN false
 
 RUN cd /home/carla/carla \
 && echo pwd \
@@ -40,7 +46,7 @@ WORKDIR /home/carla/carla
 RUN pwd
 RUN ls -alh
 
-#RUN make CarlaUE4Editor
+RUN make CarlaUE4Editor
 
 RUN echo "building PythonAPI"
 RUN make PythonAPI
@@ -50,7 +56,7 @@ RUN echo "building utils"
 RUN make build.utils
 
 RUN echo "building packege"
-RUN make package
+RUN make -w  package
 
 RUN echo "package build successful"
 

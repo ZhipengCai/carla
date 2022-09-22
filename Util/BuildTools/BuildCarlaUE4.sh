@@ -147,7 +147,7 @@ if ${BUILD_CARLAUE4} ; then
   fi
 
   log "Build CarlaUE4 project."
-  make CarlaUE4Editor
+  make -w CarlaUE4Editor
 
   #Providing the user with the ExportedMaps folder
   EXPORTED_MAPS="${CARLAUE4_ROOT_FOLDER}/Content/Carla/ExportedMaps"
