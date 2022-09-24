@@ -485,14 +485,15 @@ constexpr const TCHAR* GBufferNames[] =
     TEXT("CustomStencil"),
 };
 
-#ifdef(_MSC_VER)
-#define CUSTOM_NOINLINE __declspec(noinline)
-#else
-#define CUSTOM_NOINLINE
-#endif
+// #ifdef(_MSC_VER)
+// #define CUSTOM_NOINLINE __declspec(noinline)
+// #else
+// #define CUSTOM_NOINLINE
+// #endif
 
 template <EGBufferTextureID ID, typename T>
-CUSTOM_NOINLINE(noinline) static void CheckGBufferStream(T& GBufferStream, FGBufferRequest& GBuffer)
+// __declspec(noinline) static void CheckGBufferStream(T& GBufferStream, FGBufferRequest& GBuffer)
+static void CheckGBufferStream(T& GBufferStream, FGBufferRequest& GBuffer)
 {
     if (GBufferStream.bIsUsed)
     {

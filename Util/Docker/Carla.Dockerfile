@@ -28,10 +28,10 @@ RUN echo $GIT_BRANCH
 #RUN if [ -z ${GIT_BRANCH+x} ]; then git clone --depth 1 https://github.com/carla-simulator/carla.git; \
 
 #ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
-#RUN git clone --depth 1 --branch $GIT_BRANCH https://github.com/ZhipengCai/carla.git
-RUN mkdir /home/carla/carla
-RUN ls -alh /home/carla
-COPY --chown=carla:carla . /home/carla/carla
+RUN git clone --depth 1 --branch $GIT_BRANCH https://github.com/ZhipengCai/carla.git
+#RUN mkdir /home/carla/carla
+#RUN ls -alh /home/carla
+#COPY --chown=carla:carla . /home/carla/carla
 
 # RUN false
 
@@ -42,7 +42,7 @@ WORKDIR /home/carla/carla
 RUN pwd
 RUN ls -alh
 
-RUN make CarlaUE4Editor
+#RUN make CarlaUE4Editor
 
 RUN echo "building PythonAPI"
 RUN make PythonAPI
