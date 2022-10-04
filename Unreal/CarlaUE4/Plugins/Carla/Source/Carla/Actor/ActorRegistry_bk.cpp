@@ -77,8 +77,7 @@ FCarlaActor* FActorRegistry::Register(AActor &Actor, FActorDescription Descripti
     return CarlaActor;
   }
 
-  // IdType Id = ++FActorRegistry::ID_COUNTER;
-  IdType Id = Actor.GetUniqueID();
+  IdType Id = ++FActorRegistry::ID_COUNTER;
 
   if (DesiredId != 0 && Id != DesiredId) {
     // check if the desired Id is free, then use it instead
