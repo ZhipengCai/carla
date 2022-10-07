@@ -255,7 +255,8 @@ void UObjectRegister::RegisterISMComponents(AActor* Actor)
 
       FEnvironmentObject EnvironmentObject;
       EnvironmentObject.Transform = InstanceTransform * CompTransform;
-      EnvironmentObject.Id = InstanceId;
+      // EnvironmentObject.Id = InstanceId;
+      EnvironmentObject.Id = Actor->GetUniqueID();
       EnvironmentObject.Name = InstanceName;
       EnvironmentObject.IdStr = InstanceIdStr;
       EnvironmentObject.Actor = Actor;
@@ -302,7 +303,8 @@ void UObjectRegister::RegisterSMComponents(AActor* Actor)
 
     FEnvironmentObject EnvironmentObject;
     EnvironmentObject.Transform = Transform;
-    EnvironmentObject.Id = CityHash64(TCHAR_TO_ANSI(*SMName), SMName.Len());
+    // EnvironmentObject.Id = CityHash64(TCHAR_TO_ANSI(*SMName), SMName.Len());
+    EnvironmentObject.Id = Actor->GetUniqueID();
     EnvironmentObject.Name = SMName;
     EnvironmentObject.Actor = Actor;
     EnvironmentObject.CanTick = IsActorTickEnabled;
@@ -335,7 +337,8 @@ void UObjectRegister::RegisterSKMComponents(AActor* Actor)
 
     FEnvironmentObject EnvironmentObject;
     EnvironmentObject.Transform = Transform;
-    EnvironmentObject.Id = CityHash64(TCHAR_TO_ANSI(*SKMName), SKMName.Len());
+    // EnvironmentObject.Id = CityHash64(TCHAR_TO_ANSI(*SKMName), SKMName.Len());
+    EnvironmentObject.Id = Actor->GetUniqueID();
     EnvironmentObject.Name = SKMName;
     EnvironmentObject.Actor = Actor;
     EnvironmentObject.CanTick = IsActorTickEnabled;
