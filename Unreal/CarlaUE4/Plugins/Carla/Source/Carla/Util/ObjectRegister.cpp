@@ -138,13 +138,15 @@ void UObjectRegister::RegisterEnvironmentObject(
 
   FEnvironmentObject EnvironmentObject;
   EnvironmentObject.Transform = Actor->GetActorTransform();
-  EnvironmentObject.Id = CityHash64(ActorNameChar, ActorName.Len());
+  // EnvironmentObject.Id = CityHash64(ActorNameChar, ActorName.Len());
+  EnvironmentObject.Id = Actor.GetUniqueID();
   EnvironmentObject.Name = ActorName;
   EnvironmentObject.Actor = Actor;
   EnvironmentObject.CanTick = Actor->IsActorTickEnabled();
   EnvironmentObject.BoundingBox = BoundingBox;
   EnvironmentObject.ObjectLabel = static_cast<crp::CityObjectLabel>(Tag);
-  EnvironmentObject.Type = Type;
+  // EnvironmentObject.Type = Type;
+  EnvironmentObject.Type = FActorRegistry_GetActorType(&Actor);
   EnvironmentObjects.Emplace(std::move(EnvironmentObject));
 }
 
