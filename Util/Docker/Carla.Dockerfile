@@ -1,4 +1,4 @@
-FROM carla-prerequisites:latest
+FROM carla-prerequisites-py37:latest
 
 ARG GIT_BRANCH=zcai/gbuffer
 
